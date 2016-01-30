@@ -13,23 +13,28 @@ public class ItemSpawner : MonoBehaviour
         if (Random.Range(0, 100) < chanceToSpawnNothing)
             return;
 
-        //roll for which item to spawn
-        int itemSelection = (int)Random.Range(0,100);
-        int chanceSummation = 0;
-        int index = -1;
-        do
-        {
-            index++;
-            chanceSummation += chanceArray[index];
-        } while (chanceSummation < itemSelection);
+		GameObject selectedItem;
+		if (itemArray.Length > 1)
+		{
+			//roll for which item to spawn
+			int itemSelection = (int)Random.Range(0, 100);
+			int chanceSummation = 0;
+			int index = -1;
+			do
+			{
+				index++;
+				chanceSummation += chanceArray[index];
+			} while (chanceSummation < itemSelection);
 
-        if (index >= itemArray.Length)
-            index = itemArray.Length - 1;
+			if (index >= itemArray.Length)
+				index = itemArray.Length - 1;
 
-        GameObject selectedItem = itemArray[index];
+			selectedItem = itemArray[index];
+		}
+		selectedItem = itemArray[0];
 
-        //spawn the selected item and make this object its parent
-       GameObject item = Instantiate(selectedItem, transform.position, Quaternion.identity) as GameObject;
+	   //spawn the selected item and make this object its parent
+	   GameObject item = Instantiate(selectedItem, transform.position, Quaternion.identity) as GameObject;
        item.transform.parent = transform;
 	}  
 }
