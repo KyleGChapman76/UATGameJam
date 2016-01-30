@@ -45,8 +45,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+     <Compile Include="Assets\GhostAI.cs" />
+     <Compile Include="Assets\Item.cs" />
+     <Compile Include="Assets\ItemSpawner.cs" />
+     <Compile Include="Assets\MainMenu.cs" />
+     <Compile Include="Assets\PlayerController.cs" />
+     <Compile Include="Assets\ZombieAI.cs" />
+=======
      <Compile Include="Assets\Scripts\MagicCircle.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
+>>>>>>> 989e35f43142987b0ccf7b2054221657cd15badd
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
