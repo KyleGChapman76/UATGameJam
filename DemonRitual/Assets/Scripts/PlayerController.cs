@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour
 {
     public float movementSpeed = 2.0f;
     public bool player1; //if this player is player1 or not
+	public GameObject carriedItem; //which item the player is carrying
 
     private void Update ()
     {
@@ -23,6 +25,21 @@ public class PlayerController : MonoBehaviour
 
         //set the players velocity and reset any rotation (kindof hackish)
         GetComponent<Rigidbody2D>().velocity = new Vector2(velX, velY);
-        transform.rotation = Quaternion.identity;
+       
+		if (Mathf.Abs (inputX) != 0 && Mathf.Abs(inputY) != 0)
+		{
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, Mathf.Atan2 (inputY,inputX) * 180/Mathf.PI));
+			GetComponent<Rigidbody2D> ().angularVelocity = 0f;
+		}
+		else if (Mathf.Abs (inputX) > 0)
+		{
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, inputX > 0 ? 0 : 180));
+			GetComponent<Rigidbody2D> ().angularVelocity = 0f;
+		}
+		else if (Mathf.Abs (inputY) > 0)
+		{
+			transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, inputY > 0 ? 90 : 270));
+			GetComponent<Rigidbody2D> ().angularVelocity = 0f;
+		}
     }
 }
